@@ -1,5 +1,6 @@
 #RecommendSystem_lyz
 WebContent: front-end system, concludes:
+
 index.html: main html page
 
 scripts: JavaScript for index.html(use Jquery and Ajax to simplify the web connection)
