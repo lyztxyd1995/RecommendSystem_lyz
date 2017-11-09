@@ -27,4 +27,7 @@ rpc：WebServlet programe， use Restful API
                ItemHistory:  return the history of user's favorite items.
 
 
+Web Servlet:
+Recommend for tickets: http://18.216.79.172:8080/Titan/# .         TicketMaster API
+Recommend for restaurants: http://18.216.195.204:8080/Titan/#      Yelp API
 
