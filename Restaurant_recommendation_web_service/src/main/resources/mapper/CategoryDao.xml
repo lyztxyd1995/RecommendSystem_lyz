@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.restaurant.dao.CategoryDao">
+    <insert id="batchInsertCategory" parameterType="java.util.List">
+        INSERT IGNORE INTO
+        categories
+        (item_id,category)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.itemId}, #{item.category})
+        </foreach>
+    </insert>
+
+    <select id="selectCategories" resultType="String">
+        SELECT category FROM categories
+        WHERE
+        item_id = #{itemId}
+    </select>
+
+    <select id="selectCategoriesByListItems" resultType="com.restaurant.entity.Category">
+        SELECT * FROM categories
+        WHERE item_id IN(
+        <foreach collection="itemIds" item="itemId" separator=",">
+            #{itemId}
+        </foreach>
+        )
+    </select>
+</mapper>

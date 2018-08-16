@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Recommendation</title>
+    <script type="text/javascript" src="../restaurant_recommendation/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="../restaurant_recommendation/resources/js/update.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../restaurant_recommendation/resources/css/login.css">
+</head>
+<body>
+<div class="container">
+    <div class="container">
+        <div class="form row">
+            <div class="form-horizontal col-md-offset-3" id="login_form">
+                <h3 class="form-title">Update Your Information</h3>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <i class="fa fa-user fa-lg"></i>
+                        <input class="form-control required" type="text" disabled="true" placeholder="Username" id="userId" name="username"/>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock fa-lg"></i>
+                        <input class="form-control required" type="password" placeholder="Enter your previous password" id="password" name="password" maxlength="20"required/>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock fa-lg"></i>
+                        <input class="form-control required" type="password" placeholder="Enter your new password" id="newpassword" name="password" maxlength="20"required/>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock fa-lg"></i>
+                        <input class="form-control required" type="password" placeholder="Confirm your new password" id="newpassword1" name="password1" maxlength="20"required/>
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fa fa-lock fa-lg"></i>
+                        <input class="form-control required" type="text" placeholder="First Name" id="firstName" name="firstName" maxlength="20" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fa fa-lock fa-lg"></i>
+                        <input class="form-control required" type="text" placeholder="Last Name" id="lastName" name="lastName" maxlength="20" required/>
+                    </div>
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <i class="fa fa-lock fa-lg"></i>
+                                <input type="password" class="form-control required" id="j_captcha" placeholder="Enter the Auth Code" autofocus="autofocus" maxlength="20" required>
+                                <img id="captcha_img" alt="click to change" title="click to change" onclick="changeVerifyCode(this)" src="../restaurant_recommendation/Kaptcha">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group col-md-offset-9">
+                        <a href="/restaurant_recommendation/index"><h4>Back</h4></a>
+                        <button type="submit" class="btn btn-success pull-right" id = "update_submit">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function changeVerifyCode(img){
+        img.src = "../restaurant_recommendation/Kaptcha?" + Math.floor(Math.random() * 100);
+    }
+</script>
+</body>
+</html>

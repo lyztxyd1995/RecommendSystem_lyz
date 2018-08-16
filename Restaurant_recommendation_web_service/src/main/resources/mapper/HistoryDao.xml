@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.restaurant.dao.HistoryDao">
+    <insert id="insertHistory">
+        INSERT INTO history
+        (user_id, item_id)
+        VALUES
+        (#{userId}, #{itemId})
+    </insert>
+
+    <delete id="deleteHistory">
+        DELETE FROM history
+        WHERE
+        user_id = #{userId}
+        and item_id = #{itemId}
+    </delete>
+
+    <select id="selectItemsId" resultType="String">
+        SELECT item_id FROM history
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectOneItemId" resultType="String">
+        SELECT item_id FROM history
+        WHERE user_id = #{userId}
+        AND item_id = #{itemId}
+    </select>
+</mapper>

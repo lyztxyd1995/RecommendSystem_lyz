@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.restaurant.dao.ItemDao">
+    <insert id="insertItem">
+      INSERT IGNORE INTO items
+      (item_id,`name`,city,state,country,zipcode,rating,address,
+      latitude,longitude,description,snippet,snippet_url,image_url,url)
+      VALUES
+      (#{itemId}, #{name}, #{city}, #{state}, #{country},#{zipcode}, #{rating}, #{address},#{latitude}, #{longitude},
+      #{description}, #{snippet}, #{snippetUrl}, #{imageUrl}, #{url})
+    </insert>
+
+    <insert id="batchInsertItem" parameterType="java.util.List">
+      INSERT IGNORE INTO
+      items
+        (item_id,`name`,city,state,country,zipcode,rating,address,
+        latitude,longitude,description,snippet,snippet_url,image_url,url)
+      VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.itemId}, #{item.name}, #{item.city}, #{item.state}, #{item.country},#{item.zipcode}, #{item.rating},
+            #{item.address},#{item.latitude}, #{item.longitude},
+            #{item.description}, #{item.snippet}, #{item.snippetUrl}, #{item.imageUrl}, #{item.url})
+        </foreach>
+    </insert>
+
+    <select id="selectItems" parameterType="java.util.List" resultType="com.restaurant.entity.Item">
+        SELECT * FROM items
+        WHERE
+        item_id
+        IN(
+        <foreach collection="itemIds" item="itemId" separator=",">
+            #{itemId}
+        </foreach>
+        )
+    </select>
+</mapper>

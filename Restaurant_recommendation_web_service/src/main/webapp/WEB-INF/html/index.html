@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Item Recommendation">
+    <meta name="author" content="Yize_Liu">
+    <title>Restaurants Recommendation</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="../restaurant_recommendation/resources/css/index.css">
+</head>
+</head>
+<body>
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+ <span>
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="#" class="username" id="username">Welcome! ** ** ~</a></li>
+        <li role="presentation"><a href="/restaurant_recommendation/updateInfo">Account Service</a></li>
+        <li role="presentation"><a href="#bottom">Contact us</a></li>
+        <li role="presentation"><a href="/restaurant_recommendation/login">Log out</a></li>
+    </ul>
+</span>
+    <!-- 指示符 -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+        <li data-target="#demo" data-slide-to="4"></li>
+        <li data-target="#demo" data-slide-to="5"></li>
+        <li data-target="#demo" data-slide-to="6"></li>
+        <li data-target="#demo" data-slide-to="7"></li>
+        <li data-target="#demo" data-slide-to="8"></li>
+    </ul>
+
+    <!-- 轮播图片 -->
+    <div class="carousel-inner" id="carousel-inner">
+        <div class="carousel-item active">
+            <a href="http://www.google.com"><img src="https://s3-media1.fl.yelpcdn.com/bphoto/78BZ9sl-K0hGUiqJU2i2mw/o.jpg"></a>
+        </div>
+    </div>
+
+    <!-- 左右切换按钮 -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active" id="nearby"><a href="#"><strong>Nearby</strong></a></li>
+            <li role="presentation" id="myFavorite"><a href="#"><strong>My Favorites</strong></a></li>
+            <li role="presentation" id="recommendation"><a href="#"><strong>Recommendation</strong></a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <ul class="items_container" id="items_container">
+        </ul>
+    </div>
+</div>
+<footer id="bottom">
+    <ul style="list-style-type:none">
+        <li>
+            <p><i class="fa fa-map-o fa-2x"></i></p >
+            <p>Boston University.MA</p >
+            <p>Yize Liu</p>
+        </li>
+        <li>
+            <p><i class="fa fa-envelope-o fa-2x"></i></p>
+            <p>lyz95222@bu.edu</p>
+        </li>
+        <li>
+            <p><i class="fa fa-phone fa-2x"></i></p >
+            <p>+857 869 1466</p >
+        </li>
+    </ul>
+</footer>
+</body>
+<script type="text/javascript" src="../restaurant_recommendation/resources/js/jquery.js"></script>
+<script>
+    function setFavorite(e){
+        var item_id = $(e).attr('item_id');
+        var my_id = '#likebutton_' + item_id;
+        var dislike_id = '#dislikebutton_' + item_id;
+        $(my_id).attr("class","tn btn-danger btn-lg");
+        $(dislike_id).attr("class","btn btn-default btn-lg");
+        $.ajax({
+            url:"/restaurant_recommendation/setFavorite?itemId=" + item_id,
+            type:"get",
+            dataType:"json",
+            success: function(data){
+                if(data.success){
+                    console.log("success to insert data")
+                } else {
+                    console.log("fail to set data")
+                }
+            }
+        });
+    }
+
+    function unsetFavorite(e){
+        var item_id = $(e).attr('item_id');
+        var my_id = '#dislikebutton_' + item_id;
+        var dislike_id = '#likebutton_' + item_id;
+        $(my_id).attr("class","tn btn-warning btn-lg");
+        $(dislike_id).attr("class","btn btn-default btn-lg");
+        $.ajax({
+            url:"/restaurant_recommendation/unsetFavorite?itemId=" + item_id,
+            type:"get",
+            dataType:"json",
+            success: function(data){
+                if(data.success){
+                    console.log("success to delete data")
+                } else {
+                    console.log("fail to delete data")
+                }
+            }
+        });
+    }
+</script>
+<script type="text/javascript" src="../restaurant_recommendation/resources/js/index.js"></script>
+</body>
+</html>
